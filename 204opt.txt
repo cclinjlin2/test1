@@ -1,0 +1,74 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+//jerry
+//Che
+
+namespace CSA02
+{
+    class CSA02
+    {
+        static void Main(string[] args)
+        {
+            
+
+            try
+            {
+                // 輸入兩個整數
+                int x1 = Convert.ToInt32(Console.ReadLine());
+                int x2 = Convert.ToInt32(Console.ReadLine());
+
+                // 確保範圍有效 (x1 > 0 且 x2 <= 100)
+                if (x1 <= 0 || x2 > 100)
+                {
+                    throw new ArgumentException("Invalid input range");
+                }
+
+                // 確保 x1 是較小的數，x2 是較大的數
+                if (x1 > x2)
+                {
+                    (x1, x2) = (x2, x1); // 簡潔的交換方式
+                }
+
+                // 尋找並輸出範圍內的質數
+                for (int n = Math.Max(x1, 2); n <= x2; n++)
+                {
+                    if (IsPrime(n))
+                    {
+                        Console.WriteLine(n);
+                    }
+                }
+            }
+            catch
+            {
+                Console.WriteLine("error");
+            }
+        }
+
+
+
+        // 判斷一個數是否為質數
+        static bool IsPrime(int number)
+        {
+            if (number < 2) return false; // 1 和更小的數都不是質數
+
+            // 只需檢查到 sqrt(number)
+            int sqrt = (int)Math.Sqrt(number);
+            for (int i = 2; i <= sqrt; i++)
+            {
+                if (number % i == 0)
+                {
+                    return false; // 找到因數，非質數
+                }
+            }
+
+            return true; // 無因數，為質數
+        }
+
+
+
+    }
+}
